@@ -9,27 +9,27 @@ steps:
     "--dns-name", "simple-iap-proxy"
   ]
 - id: start simple-iap-proxy
-    name: gcr.io/cloud-builders/docker
-    secretEnv:
-      - AUDIENCE
-      - TARGET_URL
-      - SERVICE_ACCOUNT
-    entrypoint: /bin/sh
-    args:
-      - -c
-      - >
-        docker run -d --rm -v /workspace:/workspace -w /workspace
-        --network cloudbuild --name simple-iap-proxy
-        gcr.io/binx-io-public/simple-iap-proxy:0.5.2 client
-        --to-gke
-        --port 8080
-        --target-url $$TARGET_URL
-        --iap-audience $$AUDIENCE
-        --service-account $$SERVICE_ACCOUNT
-        --use-default-credentials
-        --key-file server.key
-        --certificate-file server.crt &&
-        sleep 2
+  name: gcr.io/cloud-builders/docker
+  secretEnv:
+    - AUDIENCE
+    - TARGET_URL
+    - SERVICE_ACCOUNT
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - >
+      docker run -d --rm -v /workspace:/workspace -w /workspace
+      --network cloudbuild --name simple-iap-proxy
+      gcr.io/binx-io-public/simple-iap-proxy:0.5.2 client
+      --to-gke
+      --port 8080
+      --target-url $$TARGET_URL
+      --iap-audience $$AUDIENCE
+      --service-account $$SERVICE_ACCOUNT
+      --use-default-credentials
+      --key-file server.key
+      --certificate-file server.crt &&
+      sleep 2
   - id: get credentials for cluster
     name: gcr.io/cloud-builders/gcloud
     entrypoint: gcloud
