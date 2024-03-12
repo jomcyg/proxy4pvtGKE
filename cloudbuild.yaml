@@ -22,7 +22,7 @@ steps:
       --network cloudbuild --name simple-iap-proxy
       gcr.io/binx-io-public/simple-iap-proxy:0.5.2 client
       --to-gke
-      --port 8080
+      --port 8443
       --target-url $$TARGET_URL
       --iap-audience $$AUDIENCE
       --service-account $$SERVICE_ACCOUNT
@@ -47,7 +47,7 @@ steps:
     - -c
     - context_name=$(kubectl config current-context) &&
       kubectl config set clusters.$context_name.certificate-authority-data "$(base64 < server.crt)" &&
-      kubectl config set clusters.$context_name.proxy-url https://localhost:8080 &&
+      kubectl config set clusters.$context_name.proxy-url https://localhost:8443 &&
       kubectl cluster-info
 
 availableSecrets:
