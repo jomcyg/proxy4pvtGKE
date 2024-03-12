@@ -29,7 +29,7 @@ steps:
       --use-default-credentials
       --key-file server.key
       --certificate-file server.crt &&
-       sleep 2
+       sleep 5
 - id: get credentials for cluster
   name: gcr.io/cloud-builders/gcloud
   entrypoint: gcloud
@@ -47,7 +47,7 @@ steps:
     - -c
     - context_name=$(kubectl config current-context) &&
       kubectl config set clusters.$context_name.certificate-authority-data "$(base64 < server.crt)" &&
-      kubectl config set clusters.$context_name.proxy-url https://127.0.0.1:8443 &&
+      kubectl config set clusters.$context_name.proxy-url https://simple-iap-proxy:8443 &&
       kubectl cluster-info
 
 availableSecrets:
