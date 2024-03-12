@@ -13,4 +13,4 @@ accessors = [
 # support email address for the IAP brand.
 # if there is an IAP brand in your project, make this empty string: ""
 # To check whether you already have a brand, type `gcloud alpha iap oauth-brands list`
-iap_support_email = "jomcy@google.com"
+iap_support_email = ""
