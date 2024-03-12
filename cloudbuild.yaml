@@ -35,9 +35,9 @@ steps:
   entrypoint: gcloud
   args: [
       "container", "clusters",
-      "get-credentials", "${_CLUSTER_NAME}",
+      "get-credentials", "jmc-autopilot-demo",
       "--internal-ip",
-      "--zone", "${_CLUSTER_ZONE}"
+      "--region", "asia-south1"
   ]
 
 - id: setup kubectl to use proxy
