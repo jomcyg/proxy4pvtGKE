@@ -8,7 +8,7 @@ resource "google_iap_web_backend_service_iam_binding" "iap_proxy_https_resource_
 }
 
 resource "google_service_account" "iap_proxy_accessor" {
-  account_id  = "sa_iap-proxy-accessor"
+  account_id  = "sa-iap-proxy-accessor"
   description = "SA for IAP proxy accessors"
 }
 

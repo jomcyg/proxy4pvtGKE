@@ -1,0 +1,16 @@
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia-south1-docker.pkg.dev/jmc-devsecops/hello-test/python:3.11.0', '.']
+
+
+availableSecrets:
+  secretManager:
+    - env: AUDIENCE
+      versionName: projects/${PROJECT_ID}/secrets/simple-iap-proxy-audience/versions/latest
+    - env: SERVICE_ACCOUNT
+      versionName: projects/${PROJECT_ID}/secrets/simple-iap-proxy-service-account/versions/latest
+    - env: TARGET_URL
+      versionName: projects/${PROJECT_ID}/secrets/simple-iap-proxy-target-url/versions/latest
+
+

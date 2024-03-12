@@ -23,8 +23,3 @@ data "google_client_config" "current" {
 data "google_project" "current" {
   project_id = data.google_client_config.current.project
 }
-module "dir" {
-  source  = "hashicorp/dir/template"
-  version = "1.0.2"
-  # insert the 1 required variable here
-}

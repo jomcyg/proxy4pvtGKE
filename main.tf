@@ -158,7 +158,7 @@ resource "google_compute_firewall" "vpc-jmc-core-prd_allow_8443_to_iap_proxy_fro
 }
 
 resource "google_service_account" "iap_proxy" {
-  account_id   = "sa_iap-proxy"
+  account_id   = "sa-iap-proxy"
   display_name = "IAP proxy"
 }
 
@@ -180,7 +180,7 @@ resource "tls_private_key" "iap_proxy" {
 }
 
 resource "tls_self_signed_cert" "iap_proxy" {
-  key_algorithm   = "RSA"
+  #key_algorithm   = "RSA"
   private_key_pem = tls_private_key.iap_proxy.private_key_pem
 
   subject {
