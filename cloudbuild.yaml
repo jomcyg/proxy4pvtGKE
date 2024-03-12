@@ -47,7 +47,7 @@ steps:
     - -c
     - context_name=$(kubectl config current-context) &&
       kubectl config set clusters.$context_name.certificate-authority-data "$(base64 < server.crt)" &&
-      kubectl config set clusters.$context_name.proxy-url https://simple-iap-proxy:8443 &&
+      kubectl config set clusters.$context_name.proxy-url https://34.49.179.210:443 &&
       kubectl cluster-info
 
 availableSecrets:
