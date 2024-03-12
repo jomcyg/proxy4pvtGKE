@@ -29,26 +29,26 @@ steps:
       --use-default-credentials
       --key-file server.key
       --certificate-file server.crt &&
-      sleep 2
-  - id: get credentials for cluster
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: gcloud
-    args: [
-        "container", "clusters",
-        "get-credentials", "${_CLUSTER_NAME}",
-        "--internal-ip",
-        "--zone", "${_CLUSTER_ZONE}"
-    ]
+       sleep 2
+- id: get credentials for cluster
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: gcloud
+  args: [
+      "container", "clusters",
+      "get-credentials", "${_CLUSTER_NAME}",
+      "--internal-ip",
+      "--zone", "${_CLUSTER_ZONE}"
+  ]
 
-  - id: setup kubectl to use proxy
-    name: gcr.io/cloud-builders/kubectl
-    entrypoint: /bin/sh
-    args:
-      - -c
-      - context_name=$(kubectl config current-context) &&
-        kubectl config set clusters.$context_name.certificate-authority-data "$(base64 < server.crt)" &&
-        kubectl config set clusters.$context_name.proxy-url https://simple-iap-proxy:8080 &&
-        kubectl cluster-info
+- id: setup kubectl to use proxy
+  name: gcr.io/cloud-builders/kubectl
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - context_name=$(kubectl config current-context) &&
+      kubectl config set clusters.$context_name.certificate-authority-data "$(base64 < server.crt)" &&
+      kubectl config set clusters.$context_name.proxy-url https://simple-iap-proxy:8080 &&
+      kubectl cluster-info
 
 availableSecrets:
   secretManager:
