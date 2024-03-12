@@ -122,6 +122,7 @@ resource "google_compute_instance_template" "iap_proxy" {
 }
 
 resource "google_compute_firewall" "default_allow_ssh_to_iap_proxy" {
+  project     = "jmc-central-pj"
   name    = "default-allow-ssh-to-iap-proxy"
   network = "vpc-jmc-core-prd"   #JMC
 
@@ -139,6 +140,7 @@ resource "google_compute_firewall" "default_allow_ssh_to_iap_proxy" {
 }
 
 resource "google_compute_firewall" "vpc-jmc-core-prd_allow_8443_to_iap_proxy_from_lb_and_iap" {
+  project     = "jmc-central-pj"
   name    = "vpc-jmc-core-prd-allow-8443-to-iap-proxy-from-lb-and-iap"
   network = "vpc-jmc-core-prd"
 
