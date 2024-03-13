@@ -187,7 +187,7 @@ resource "tls_self_signed_cert" "iap_proxy" {
 
   subject {
     common_name  = "localhost"
-    organization = "Binx.io B.V."
+    organization = "jomcy.com"
   }
 
   validity_period_hours = 24 * 365
